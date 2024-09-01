@@ -1,4 +1,4 @@
-# Docker 설치 & Hello World 실행
+# Hello Docker
 
 ## Docker Desktop 설치
 
@@ -7,8 +7,8 @@ https://www.docker.com/products/docker-desktop/
 
 ## 터미널 실행
 
-- Windows: Git Bash, WSL, cmd.exe
-- macOS: Terminal
+- Windows: Git Bash, Command Prompt, PowerShell
+- macOS, Linux: Terminal
 
 
 ## Hello World
