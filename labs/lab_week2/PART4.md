@@ -1,4 +1,4 @@
-# Kubernetes 시작
+# Kubernetes 설치
 
 ## Minikube 설치
 
