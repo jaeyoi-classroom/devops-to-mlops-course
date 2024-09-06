@@ -10,18 +10,11 @@ docker ps -a   # 종료된 컨테이너 포함 모든 컨테이너 확인
 ```
 
 
-## 저장소 최신 버전 받아오기 
-
-2주차 실습 진행을 위해 이 저장소를 clone하거나 pull해서 로컬 컴퓨터에 최신 복사본이 있도록 만듭니다. 로컬에 다음 폴더가 존재해야 합니다.
-
-- labs/lab_week2/hello_server
-
-
 ## 이미지, 컨테이너 실습
 
 ### Dockerfile 작성
 
-hello_server 폴더 밑에 Dockerfile을 새로 만듭니다.
+labs/lab_week2/hello_server 폴더 밑에 Dockerfile을 새로 만듭니다.
 
 ```Dockerfile
 FROM python:3.12-slim
@@ -40,16 +33,16 @@ CMD ["flask", "--app", "main", "run", "--host=0.0.0.0"]
 
 
 ### 이미지 빌드
-```bash
+```sh
 $ cd /path/to/hello_server
-$ docker build -t hello .
+$ docker build -t hello_server .
 ```
 
 ### 컨테이너 시작
-```bash
-$ docker run -p 5000:5000 hello_server
+```sh
+$ docker run -p 15000:5000 hello_server
 ```
-http://localhost:5000 접속해서 내용을 확인합니다.
+http://localhost:15000 접속해서 내용을 확인합니다.
 
 ### 소스 코드 갱신
 main.py를 수정합니다.
@@ -57,11 +50,14 @@ main.py를 수정합니다.
     - return "<p>Hello, Docker!</p>"
     + return "<p>Hello, DevOps!</p>"
 ```
+http://localhost:15000 접속해서 내용을 확인합니다.
 
 ### 이미지 재빌드 및 컨테이너 실행
-```bash
-$ docker build -t hello .
-$ docker run -p 5000:5000 hello_server
+터미널을 하나 더 열어서 다음 명령어를 실행합니다.
+```sh
+$ cd /path/to/hello_server
+$ docker build -t hello_server .
+$ docker run -p 15000:5000 hello_server
 ```
 
 ### 기존 컨테이너 제거 및 새 컨테이너 실행
@@ -69,9 +65,9 @@ $ docker run -p 5000:5000 hello_server
 $ docker ps
 $ docker stop <container-id>
 $ docker rm <container-id>
-$ docker run -dp 5000:5000 hello_server
+$ docker run --rm --name app -p 15000:5000 -d hello_server
 ```
-http://localhost:5000 접속해서 변경한 내용을 확인합니다.
+http://localhost:15000 접속해서 변경한 내용을 확인합니다.
 
 ## 볼륨, 네트워크 실습
 
@@ -83,10 +79,8 @@ $ docker network create hello-net
 ### 앱 컨테이너 재실행
 생성한 네트워크에 연동하여 재실행합니다.
 ```sh
-$ docker ps
-$ docker stop <app-container-id>
-$ docker rm <app-container-id>
-$ docker run --name app --network hello-net -p 5000:5000 -d hello_server
+$ docker stop app
+$ docker run --rm --name app --network hello-net -p 15000:5000 -d hello_server
 ```
 
 ### 데이터베이스 컨테이너 실행
@@ -95,9 +89,13 @@ $ docker run --rm --name db --network hello-net -e POSTGRES_PASSWORD=mysecretpas
 ```
 
 ### 방문 횟수 확인 실험
-1. http://localhost:5000/visit 접속 후, 새로고침을 여러번 해 봅니다.
+1. http://localhost:15000/visit 접속 후, 새로고침을 여러번 해 봅니다.
 1. 창을 닫았다가 다시 접속해 봅니다.
 1. 데이터베이스 컨테이너를 재실행합니다.
+```sh
+$ docker stop db
+$ docker run --rm --name db --network hello-net -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+```
 1. 웹페이지에 다시 접속해 봅니다.
 
 ### 데이터베이스에 볼륨 추가
@@ -127,19 +125,16 @@ $ docker tag hello_server <DOCKER-HUB-USER-ID>/hello
 $ docker push <DOCKER-HUB-USER-ID>/hello
 ```
 [Play with Docker](https://labs.play-with-docker.com)에서 실행해 봅니다.
+ADD NEW INSTANCE를 한 후에 다음 명령어를 웹 터미널에서 실행합니다.
+```sh
+$ docker run --rm --name app -p 15000:5000 <DOCKER-HUB-USER-ID>/hello
+```
 
+## 뒷정리
 
-
-## (선택 사항) 추가 실습
-
-
-### 내 컴퓨터에 JupyterLab 환경 구축
-
-https://docs.docker.com/guides/use-case/jupyter/
-
-
-### 개발 환경에 컨테이너 이용하기
-
-https://docs.docker.com/get-started/workshop/06_bind_mounts/#development-containers
-
-- VSCode Dev Containers: https://code.visualstudio.com/docs/devcontainers/containers
+```sh
+$ docker stop app
+$ docker stop db
+$ docker volume rm db-data
+$ docker network rm hello-net
+```

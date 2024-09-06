@@ -21,7 +21,7 @@ def get_db_connection():
         host="db",  # Postgres 컨테이너의 이름을 사용
         database="postgres",
         user="postgres",
-        password="password"
+        password="mysecretpassword"
     )
     return conn
     

@@ -11,7 +11,7 @@ services:
   app:
     build: .
     ports:
-      - 5000:5000
+      - 15000:5000
 
   db:
     image: postgres:16
