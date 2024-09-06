@@ -31,7 +31,7 @@
 
 | 주차 | 날짜 | 주제 | 퀴즈 | 강의 자료 |
 | :-: | :-: | --- | :-: | :-: |
-| 1 | 9/3 | DevOps & MLOps 개요 |  | [받기](https://drive.google.com/file/d/1xylc7kxM8ehRDj75vurO9G6KFWoZd9YG/view?usp=drive_link) |
+| 1 | 9/3 | DevOps & MLOps 개요 |  | [받기](https://drive.google.com/file/d/1y9JCPnSdDQS-Whd1O8jIND24sKquDeDY/view?usp=sharing) |
 | 2 | 9/10 | 컨테이너화 | O | |
 | 3 | 9/24 | 배포와 모니터링 | O | |
 | 4 | 10/1 | 프론트엔드 기초 | O | |
