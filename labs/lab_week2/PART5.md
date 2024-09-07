@@ -102,10 +102,17 @@ kubectl get deployments
 kubectl get pods -o wide
 ```
 
-- 로드 밸런싱 동작을 확인합니다.
+- 로드 밸런싱 동작을 시험해 봅니다.
 ```
 kubectl describe services/hello-kube
 minikube service hello-kube --url
+```
+다음 명령어를 실행하고, 결과로 나오는 주소를 브라우저에서 접속해 봅니다.
+그리고 새로고침을 여러번 누릅니다.
+
+- Pod별 로그를 확인합니다.
+```
+kubectl get pods
 kubectl logs <POD_NAME> -> Pod별로 확인
 ```
 
