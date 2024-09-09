@@ -28,7 +28,7 @@
 
 ## Hello Docker
 터미널을 실행해서 아래 명령어를 실행해 봅니다.
-- Windows: Git Bash, Command Prompt, PowerShell
+- Windows: PowerShell
 - macOS, Linux: Terminal
 
 ```sh

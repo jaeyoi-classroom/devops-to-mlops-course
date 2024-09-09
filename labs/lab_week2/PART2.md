@@ -34,13 +34,13 @@ CMD ["flask", "--app", "main", "run", "--host=0.0.0.0"]
 
 ### 이미지 빌드
 ```sh
-$ cd /path/to/hello_server
-$ docker build -t hello_server .
+cd /path/to/hello_server
+docker build -t hello_server .
 ```
 
 ### 컨테이너 시작
 ```sh
-$ docker run -p 15000:5000 hello_server
+docker run -p 15000:5000 hello_server
 ```
 http://localhost:15000 접속해서 내용을 확인합니다.
 
@@ -55,37 +55,45 @@ http://localhost:15000 접속해서 내용을 확인합니다.
 ### 이미지 재빌드 및 컨테이너 실행
 터미널을 하나 더 열어서 다음 명령어를 실행합니다.
 ```sh
-$ cd /path/to/hello_server
-$ docker build -t hello_server .
-$ docker run -p 15000:5000 hello_server
+cd /path/to/hello_server
+docker build -t hello_server .
+docker run -p 15000:5000 hello_server
+```
+
+오류 발생
+```
+docker: Error response from daemon: ...
 ```
 
 ### 기존 컨테이너 제거 및 새 컨테이너 실행
 ```sh
-$ docker ps
-$ docker stop <container-id>
-$ docker rm <container-id>
-$ docker run --rm --name app -p 15000:5000 -d hello_server
+docker ps
+docker stop <container-id>
+docker ps
+docker ps -a
+docker rm <container-id>
+docker run --rm --name app -p 15000:5000 -d hello_server
 ```
 http://localhost:15000 접속해서 변경한 내용을 확인합니다.
+
 
 ## 볼륨, 네트워크 실습
 
 ### 네트워크 생성
 ```sh
-$ docker network create hello-net
+docker network create hello-net
 ```
 
 ### 앱 컨테이너 재실행
 생성한 네트워크에 연동하여 재실행합니다.
 ```sh
-$ docker stop app
-$ docker run --rm --name app --network hello-net -p 15000:5000 -d hello_server
+docker stop app
+docker run --rm --name app --network hello-net -p 15000:5000 -d hello_server
 ```
 
 ### 데이터베이스 컨테이너 실행
 ```sh
-$ docker run --rm --name db --network hello-net -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+docker run --rm --name db --network hello-net -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 ```
 
 ### 방문 횟수 확인 실험
@@ -93,22 +101,27 @@ $ docker run --rm --name db --network hello-net -e POSTGRES_PASSWORD=mysecretpas
 1. 창을 닫았다가 다시 접속해 봅니다.
 1. 데이터베이스 컨테이너를 재실행합니다.
 ```sh
-$ docker stop db
-$ docker run --rm --name db --network hello-net -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+docker stop db
+docker run --rm --name db --network hello-net -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 ```
 1. 웹페이지에 다시 접속해 봅니다.
 
 ### 데이터베이스에 볼륨 추가
 ```sh
-$ docker volume create db-data
-$ docker stop db
-$ docker run --rm --name db --network hello-net -v db-data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+docker volume create db-data
+docker stop db
+docker run --rm --name db --network hello-net -v db-data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 ```
 위의 방문 횟수 확인 실험을 다시 해봅니다.
+
 
 > [!TIP]
 > 로컬 컴퓨터에 실행중인 웹사이트를 외부에서 접속할 수 있게 만들어 주는 도구
 > Cloudflare Tunnel (https://developers.cloudflare.com/pages/how-to/preview-with-cloudflare-tunnel/)
+```sh
+docker run cloudflare/cloudflared:latest tunnel --no-autoupdate --url http://host.docker.internal:15000
+```
+
 
 ## 레지스트리 실습
 
@@ -120,21 +133,21 @@ $ docker run --rm --name db --network hello-net -v db-data:/var/lib/postgresql/d
 ### 이미지 배포
 
 ```sh
-$ docker login -u <DOCKER-HUB-USER-ID>
-$ docker tag hello_server <DOCKER-HUB-USER-ID>/hello
-$ docker push <DOCKER-HUB-USER-ID>/hello
+docker login -u <DOCKER-HUB-USER-ID>
+docker tag hello_server <DOCKER-HUB-USER-ID>/hello
+docker push <DOCKER-HUB-USER-ID>/hello
 ```
 [Play with Docker](https://labs.play-with-docker.com)에서 실행해 봅니다.
 ADD NEW INSTANCE를 한 후에 다음 명령어를 웹 터미널에서 실행합니다.
 ```sh
-$ docker run --rm --name app -p 15000:5000 <DOCKER-HUB-USER-ID>/hello
+docker run --rm --name app -p 15000:5000 <DOCKER-HUB-USER-ID>/hello
 ```
 
 ## 뒷정리
 
 ```sh
-$ docker stop app
-$ docker stop db
-$ docker volume rm db-data
-$ docker network rm hello-net
+docker stop app
+docker stop db
+docker volume rm db-data
+docker network rm hello-net
 ```

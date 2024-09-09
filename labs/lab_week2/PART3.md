@@ -29,15 +29,15 @@ volumes:
 
 ### 서비스 실행
 ```sh
-$ docker compose up -d
+docker compose up -d
 ```
 
 ### 실행 중인 컨테이너 확인
 ```sh
-$ docker compose ps
+docker compose ps
 ```
 
 ### 서비스 중지
 ```sh
-$ docker compose down
+docker compose down
 ```

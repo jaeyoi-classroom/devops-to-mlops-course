@@ -1,11 +1,12 @@
 # Kubernetes 기초
 
+Docker Desktop을 실행시켜 둔 후에, 진행합니다.
 
 ## 클러스터 생성
 
 - node가 2개인 클러스터를 생성합니다.
 ```
-minikube start --nodes 2
+minikube start --nodes 2 --driver=docker
 ```
 
 - node 목록을 확인합니다.
@@ -28,24 +29,15 @@ kubectl get pods
 kubectl describe pods
 ```
 
-- 프록시를 활성화합니다.
-```
-kubectl proxy
-```
-
 - 실행중인 Pod의 이름을 알아냅니다.
 ```
-(macOS, Linux, Git Bash)
+# Windows PowerShell
+$POD_NAME = $(kubectl get pods -o name).replace('pod/', '')
+
+# macOS, Linux, Git Bash
 export POD_NAME="$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')"
-echo Name of the Pod: $POD_NAME
 
-(Other)
-kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}'
-```
-
-- 프록시를 이용해 앱에 접속해 봅니다.
-```
-curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME:5000/proxy/
+echo $POD_NAME
 ```
 
 - 컨테이너의 로그 내역을 확인합니다.
@@ -76,17 +68,18 @@ kubectl describe services/hello-kube
 ```
 minikube service hello-kube --url
 ```
-Docker Desktop 기반이 아닐 때는
-```
-export NODE_PORT="$(kubectl get services/hello-kube -o go-template='{{(index .spec.ports 0).nodePort}}')"
-echo NODE_PORT=$NODE_PORT
-curl http://"$(minikube ip):$NODE_PORT"
-```
 
 - 서비스를 삭제합니다.
 ```
 kubectl delete service -l app=hello-kube
 ```
+
+> [!TIP]
+> Kubernetes Dashboard
+```sh
+minikube dashboard
+```
+
 
 ## 스케일링
 - 서비스를 LoadBalancer 타입으로 생성합니다.
@@ -130,4 +123,5 @@ kubectl get pods -o wide
 kubectl delete service hello-kube
 kubectl delete deployment hello-kube
 minikube stop
+minikube delete
 ```
