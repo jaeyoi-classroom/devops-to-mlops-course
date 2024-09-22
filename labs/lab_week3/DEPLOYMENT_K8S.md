@@ -3,15 +3,12 @@
 ## 인프라 준비
 
 1. 터미널(윈도우는 PowerShell)을 열어 실습 저장소 폴더 위치로 이동합니다.
-
 1. Docker Desktop을 실행합니다.
-
 1. minikube 클러스터를 가동시킵니다.
 ```console
 minikube start --driver=docker
 ```
-
-1. 터미널을 하나 더 열어서 dashboard를 실행해 둡니다.
+- 터미널을 하나 더 열어서 dashboard를 실행해 둡니다.
 ```console
 minikube dashboard
 ```
@@ -274,7 +271,6 @@ spec:
 
 kubernetes/api-tunnel.yml을 만듭니다.
 ```YAML
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -356,9 +352,12 @@ users:
    1. 상단에서 hello-kube 네임스페이스 선택
    1. 왼쪽 메뉴에서 파드(Pod) 선택
    1. api-tunnel Pod의 로그 확인 메뉴 선택
-   1. 로그에서 Cloudflare Tunnel 주소 값 복사하여 server에 붙여넣기
+   1. 로그에서 Cloudflare Tunnel 주소 값 복사하여 매니페스트 내용에 붙여넣기
 - token
    1. 왼쪽 메뉴에서 시크릿(Secrets) 선택
+   1. api-tunnel-admin-token 선택
+   1. 데이터 > token 옆이 보기 아이콘 클릭
+   1. 값 복사하여 매니페스트 내용에 붙여넣기
 
 수정한 내용을 다시 클립보드에 복사합니다.
 
