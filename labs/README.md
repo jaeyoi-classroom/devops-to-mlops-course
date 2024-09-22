@@ -9,5 +9,5 @@
 
 ## 공개 저장소
 
-- 기본 저장소(https://github.com/jaeyoi-classroom/devops-to-mlops-lab-starter)를 **Fork** 하여, 자신만의 실습 저장소를 만듭니다.
+- [기본 저장소](https://github.com/jaeyoi-classroom/devops-to-mlops-lab-starter)를 **Fork** 하여, 자신만의 실습 저장소를 만듭니다.
 - 내 컴퓨터에 clone해서 진행합니다.
