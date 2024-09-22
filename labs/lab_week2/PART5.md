@@ -100,7 +100,7 @@ kubectl get pods -o wide
 kubectl describe services/hello-kube
 minikube service hello-kube --url
 ```
-다음 명령어를 실행하고, 결과로 나오는 주소를 브라우저에서 접속해 봅니다.
+위의 명령어를 실행하고, 결과로 나오는 주소를 브라우저에서 접속해 봅니다.
 그리고 새로고침을 여러번 누릅니다.
 
 - Pod별 로그를 확인합니다.

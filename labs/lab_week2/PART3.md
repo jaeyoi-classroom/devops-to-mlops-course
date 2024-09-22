@@ -1,6 +1,6 @@
 # Docker Compose
 
-모든 과정은 hello_server 폴더 밑에서 진행해 주세요.
+모든 과정은 실습 저장소 폴더에서 진행해 주세요.
 
 ## compose.yml 생성
 
