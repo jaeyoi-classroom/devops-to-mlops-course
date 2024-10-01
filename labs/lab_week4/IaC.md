@@ -46,7 +46,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # GitHub hosted Runner에서 실행
 
     steps:
       - name: 저장소 받아오기
@@ -71,7 +71,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: self-hosted  # Self hosted Runner에서 실행
 
     steps:
       - name: 저장소 받아오기

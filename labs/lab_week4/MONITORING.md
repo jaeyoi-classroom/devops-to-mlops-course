@@ -87,7 +87,7 @@ bp = Blueprint("api", __name__)
 @bp.route("/")
 def hello():
     REQUEST_COUNT.labels(endpoint="/").inc()  # count 메트릭 증가
-    return "Hello, DevOps!!"
+    return "Hello, DevOps!"
 
 
 @bp.route("/visit")
@@ -142,6 +142,7 @@ minikube service prometheus-grafana -p terraform-managed-cluster -n monitoring
 - PW: prom-operator
 
 접속하면, Prometheus가 기본 데이터 소스로 설정되어 있습니다.
+
 
 ### 사용자 정의 메트릭을 위한 대시보드 생성
 
