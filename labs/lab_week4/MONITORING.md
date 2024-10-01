@@ -123,6 +123,11 @@ def metrics():
     return generate_latest()
 ```
 
+- requirements.txt에 다음 내용 추가
+```
+prometheus-client==0.21.0
+```
+
 
 ## 배포
 
