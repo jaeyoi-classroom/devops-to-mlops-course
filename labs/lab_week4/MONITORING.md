@@ -18,12 +18,17 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "prometheus" {
+resource "helm_release" "monitoring_stack" {
   name       = "prometheus"
   chart      = "kube-prometheus-stack"
   repository = "https://prometheus-community.github.io/helm-charts"
-  namespace  = var.namespace
+  namespace  = "monitoring"
   version    = "63.1.0"
+  create_namespace = true
+
+  values = [
+    "${file("prometheus-values.yml")}"
+  ]
 }
 ```
 Helm은 쿠버네티스 환경에서 애플리케이션을 쉽게 관리하고 배포할 수 있도록 도와주는 패키지 관리 도구입니다.
