@@ -34,7 +34,7 @@
 | 1 | 9/3 | DevOps & MLOps 개요 |  | [받기](https://drive.google.com/file/d/1y9JCPnSdDQS-Whd1O8jIND24sKquDeDY/view?usp=sharing) | |
 | 2 | 9/10 | 컨테이너화 | O | [받기](https://drive.google.com/file/d/1HvKxXq8qP2S8gu6TtvzKT4zLPDlGFCwq/view?usp=drive_link) | |
 | 3 | 9/24 | 지속적 배포(CD) | O | [받기](https://drive.google.com/file/d/1pLpPUuE-WzQ_Lcj6VTumiHHakr7XGHmx/view?usp=drive_link) | |
-| 4 | 10/1 | IaC, 모니터링 | | | 임시공휴일, 녹화 강의로 보강 |
+| 4 | 10/1 | IaC, 모니터링 | | [받기](https://drive.google.com/file/d/1a_2Xc1PRv4A9d_wGIo760zFYuDS3WVtl/view?usp=drive_link) | 임시공휴일, 녹화 강의로 보강 |
 | 5 | 10/8 | 웹서비스 개발 기초 | O | | |
 | 6 | 10/15 | 지속적 통합(CI), Git 협업 | O | | |
 | 7 | 10/29 | 모델 서비스 구축 | O | | |
