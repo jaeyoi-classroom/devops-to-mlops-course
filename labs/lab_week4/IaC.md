@@ -271,6 +271,9 @@ resource "kubernetes_service" "api" {
   metadata {
     name      = "api-service"
     namespace = var.namespace
+    labels = {
+      app = "api"
+    }
   }
 
   spec {
