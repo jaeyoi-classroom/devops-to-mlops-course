@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: api-tunnel-admin
+  namespace: hello-kube
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hello-kube-api-tunnel-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: api-tunnel-admin
+    namespace: hello-kube
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: api-tunnel-admin-token
+  namespace: hello-kube
+  annotations:
+    kubernetes.io/service-account.name: api-tunnel-admin
+type: kubernetes.io/service-account-token
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-tunnel
+  namespace: hello-kube
+spec:
+  serviceAccountName: api-tunnel-admin
+  automountServiceAccountToken: false
+  containers:
+    - name: api-tunnel
+      image: cloudflare/cloudflared:latest
+      args:
+        - tunnel
+        - --no-autoupdate
+        - --no-tls-verify
+        - --url
+        - https://kubernetes.default.svc
