@@ -1,0 +1,57 @@
+name: K8S 클러스터에 배포
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 받아오기
+        uses: actions/checkout@v4
+
+      - name: Docker Buildx 설치
+        uses: docker/setup-buildx-action@v3
+
+      - name: GitHub 컨테이너 레지스트리에 로그인
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 빌드해서 레지스트리에 전송
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 받아오기
+        uses: actions/checkout@v4
+
+      - name: kubectl 설치
+        uses: azure/setup-kubectl@v4
+        id: install
+
+      - name: 원격 클러스터 접속을 위한 설정 파일 생성
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+
+      - name: 배포
+        run: kubectl apply -f kubernetes/deployment.yml -n ${{ vars.NAMESPACE }}
