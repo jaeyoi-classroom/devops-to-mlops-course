@@ -74,7 +74,12 @@ def test_health_check(client):
 ## 기능 구현
 
 - hello/api.py에 다음 내용을 추가합니다.
+
 ```python
+from flask import Blueprint, jsonify  # jsonify 추가
+
+...
+
 @bp.route("/healthcheck", methods=["GET"])
 def health_check():
     return jsonify({"status": "healthy"}), 200
