@@ -36,7 +36,7 @@
 | 3 | 9/24 | 지속적 배포(CD) | O | [받기](https://drive.google.com/file/d/1pLpPUuE-WzQ_Lcj6VTumiHHakr7XGHmx/view?usp=drive_link) | |
 | 4 | 10/1 | IaC, 모니터링 | | [받기](https://drive.google.com/file/d/1o8QZ2R4Icn-ws7AQbitxl6IC9Abm1xch/view?usp=drive_link) | 임시공휴일, 녹화 강의로 보강 |
 | 5 | 10/8 | 웹서비스 개발 기초 | O | [받기](https://drive.google.com/file/d/1vdskmOYHZOs_sffFJzv6g5GYvoEvj45A/view?usp=drive_link) | |
-| 6 | 10/15 | 지속적 통합(CI), Git 협업 | O | | |
+| 6 | 10/15 | 지속적 통합(CI), Git 협업 | O | [받기](https://drive.google.com/file/d/1lkLIdYoxkvuGBMb2YNa7UlhM84JE97Jf/view?usp=drive_link) | |
 | 7 | 10/29 | 모델 서비스 구축 | O | | |
 | 8 | 11/5 | 지속적 훈련(CT) | O | | |
 | 9 | 11/12 | ML 파이프라인 자동화 | O | | |
