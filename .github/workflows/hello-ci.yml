@@ -1,0 +1,31 @@
+name: CI 실습
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "hello/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install ruff tox
+
+      - name: Ruff을 이용해 Lint 작업 실행
+        run: |
+          ruff check --output-format=github .
+
+      - name: tox을 이용해 테스트 실행
+        run: tox -e py
