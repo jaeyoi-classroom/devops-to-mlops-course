@@ -6,7 +6,7 @@
 1. Docker Desktop을 실행합니다.
 1. minikube 클러스터를 가동시킵니다.
 ```console
-minikube start --driver=docker
+minikube start
 ```
 - 터미널을 하나 더 열어서 dashboard를 실행해 둡니다.
 ```console
@@ -163,6 +163,8 @@ kubectl create secret docker-registry ghcr --namespace=hello-kube --docker-serve
 
 ### manifests 파일 생성
 kubernetes/deployment.yml 파일을 생성합니다.
+
+내용 중에 [GitHub ID]라고 표시된 부분을 직접 바꿔주어야 합니다.
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -181,7 +183,7 @@ spec:
         app: hello-kube
     spec:
       containers:
-        - image: ghcr.io/jaeyoi-classroom/labs-jaeyoi:latest
+        - image: ghcr.io/jaeyoi-classroom/devops-to-mlops-labs-[GitHub ID]:latest
           imagePullPolicy: Always
           name: labs-jaeyoi
           ports:
