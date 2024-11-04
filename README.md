@@ -38,10 +38,10 @@
 | 5 | 10/8 | 웹서비스 개발 기초 | O | [받기](https://drive.google.com/file/d/1vdskmOYHZOs_sffFJzv6g5GYvoEvj45A/view?usp=drive_link) | |
 | 6 | 10/15 | 지속적 통합(CI), Git 협업 | O | [받기](https://drive.google.com/file/d/1lkLIdYoxkvuGBMb2YNa7UlhM84JE97Jf/view?usp=drive_link) | |
 | 7 | 10/29 | 모델 서비스 구축 | O | [받기](https://drive.google.com/file/d/1OSaVAflh-ZrjM67i-v9Yw6GVxCQAUXWe/view?usp=drive_link) | |
-| 8 | 11/5 | ML 파이프라인 자동화 | O | | |
-| 9 | 11/12 | 지속적 훈련(CT) | O | | |
-| 10 | 11/19 | 실험 추적 및 모델 버전 관리 | O | | |
-| 11 | 11/26 | 데이터 버전 관리 | O | | |
+| 8 | 11/5 | 지속적 학습(CT) | O | [받기](https://drive.google.com/file/d/1MaGQBhKA0bZ5Dzz0go6S5mmGmvsK4bD6/view?usp=drive_link) | |
+| 9 | 11/12 | 실험 추적 및 모델 관리 | O | | |
+| 10 | 11/19 | 데이터 관리 | O | | |
+| 11 | 11/26 | ML 파이프라인 | O | | |
 | 12 | 12/3 | 클라우드 플랫폼별 MLOps | O | | |
 | 13 | 12/10 | 프로젝트 발표 | | | |
 
