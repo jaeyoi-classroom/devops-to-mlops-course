@@ -155,6 +155,7 @@ class KospiPredictionModel(Model):
 ```
 
 ### Docker Compose 실행
+- 터미널을 열고 kospi-prediction/3-continuous-training/src 폴더로 이동한 후에 다음 명령어를 실행합니다.
 ```console
 docker compose up -d --build
 ```
