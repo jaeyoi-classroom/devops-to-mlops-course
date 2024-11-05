@@ -5,6 +5,9 @@
 - Docker Desktop 실행
 - Self Hosted Runner 프로그램 실행
 
+## 작업 브랜치 생성
+
+- continuous-training 이라는 이름으로 브랜치를 만듭니다.
 
 ## 실습 폴더 준비
 
@@ -330,6 +333,8 @@ variable "model_api_url" {
 3-continuous-training/workflow/deploy-kospi-prediction.yml 파일을 저장소 내 .github/workflow 폴더 아래로 복사합니다. (이미 있던 deploy-kospi-prediction.yml 파일에 덮어 씁니다.)
 
 그리고 commit & push 하여 배포를 시작합니다.
+
+PR을 만들어 main에 병합합니다.
 
 ### 배포 후 웹사이트 접속
 - 자동 배포가 완료되면 웹사이트에 접속해 봅니다.
