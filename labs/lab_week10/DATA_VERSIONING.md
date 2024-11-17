@@ -19,7 +19,7 @@
 
 - 터미널을 열고, pip를 이용해 DVC를 설치합니다. minio와 연동하기 위해 dvc-s3 확장이 필요합니다.
 ```console
-pip install dvc[s3]
+pip install "dvc[s3]"
 ```
 
 
@@ -39,17 +39,25 @@ cd kospi-prediction/5-data-management/src
 dvc init --subdir
 ```
 
-아래의 모든 터미널 명령어는 kospi-prediction/5-data-management/src 아래에서 실행하세요.
+### DVC 기본 파일 커밋
+- 초기화를 하고 나면, .dvc 폴더가 생깁니다. 해당 폴더를 commit합니다.
+
+
+> [!IMPORTANT]
+> 이후 과정의 모든 터미널 명령어는 kospi-prediction/5-data-management/src 아래에서 실행하세요.
 
 
 ## 데이터 추적
 - src/data 폴더를 만듭니다.
-- src/model/data.py를 src/data 폴더로 옮깁니다.
 - data.py에 다음 내용을 추가합니다.
 ```python
+from pathlib import Path
+
+...
+
 if __name__ == "__main__":
     df = get_kospi_data(3 * 365)
-    df.to_csv(Path(__file__).parent / "kospi.csv")
+    df.to_csv(Path(__file__).parent / "../data/kospi.csv")
 ```
 - data.py를 실행합니다.
 - 저장한 데이터셋을 DVC가 추적하도록 추가합니다.
@@ -61,27 +69,51 @@ dvc add data/kospi.csv
 
 - git에 commit합니다.
 ```console
-git add data/kospi.csv.dvc data/.gitignore
+git add data/kospi.csv.dvc data/.gitignore model/data.py
 git commit -m "KOSPI 지수 데이터 추가"
 ```
 
 ## 데이터 저장
 
+로컬 혹은 원격 저장소 중에 선택해서 진행합니다.
+
 ### 로컬 저장소 경로 설정
 ```console
-mkdir .../dvcstore
-dvc remote add -d localstore .../dvcstore
+mkdir dvcstore
+dvc remote add -d localstore dvcstore
 ```
 
 ### 원격 저장소 경로 설정
-- minio 컨테이너를 실행해 둡니다.
+- src/compose.yml을 수정합니다.
+```yaml
+  minio:
+    image: minio/minio
+    ports:
+      - "19000:9000" --> 여기 추가
+      - "19001:9001"
+```
+
+- minio 컨테이너를 실행합니다.
 ```console
 docker compose up -d minio
 ```
 
+- minio 콘솔(http://localhost:19001)로 접속해서 bucket이라는 이름으로 버킷을 만듭니다.
+   - ID: minio_user
+   - PW: minio_password
+
 - 접속 정보 및 경로를 설정합니다.
 ```console
 dvc remote add -d minio s3://bucket/dvcstore
+dvc remote modify --local minio endpointurl http://localhost:19000
+dvc remote modify --local minio access_key_id "minio_user"
+dvc remote modify --local minio secret_access_key "minio_password"
+```
+
+### 저장소 설정 커밋
+```console
+git add .dvc/config
+git commit -m "DVC 저장소 설정"
 ```
 
 ### 데이터 보내기
@@ -107,7 +139,7 @@ if __name__ == "__main__":
 ```console
 dvc add data/kospi.csv
 dvc push
-git commit data/kospi.csv.dvc -m "KOSPI 지수 데이터 갱신'
+git commit data/kospi.csv.dvc -m "KOSPI 지수 데이터 갱신"
 ```
 
 ### 버전 바꿔보기
