@@ -41,7 +41,7 @@
 | 8 | 11/5 | 지속적 학습(CT) | O | [받기](https://drive.google.com/file/d/1MaGQBhKA0bZ5Dzz0go6S5mmGmvsK4bD6/view?usp=drive_link) | |
 | 9 | 11/12 | 실험 추적 및 모델 관리 | O | [받기](https://drive.google.com/file/d/1vzp3k7kpVhf-kKcD9zyjPU5Npm9_SAUv/view?usp=drive_link) | |
 | 10 | 11/19 | 데이터 관리 | O | [받기](https://drive.google.com/file/d/1R1Z8mn3VlsJKKUyIzdHRFYM6ngpBjKvu/view?usp=drive_link) | |
-| 11 | 11/26 | 인프라 관리 | O | | |
+| 11 | 11/26 | 인프라 관리 | O | [받기](https://drive.google.com/file/d/1MZjbUuRF3vTvrWvyWq5R_ijHV_2GjyNw/view?usp=drive_link) | |
 | 12 | 12/3 | 클라우드 플랫폼별 MLOps | O | | |
 | 13 | 12/10 | 프로젝트 발표 | | | |
 
