@@ -13,7 +13,7 @@
 
 - 프로젝트: 40%
   - 주제: MLOps를 적용한 ML 서비스 구축
-  - 마지막 주차에 발표 진행
+  - 13주차에 발표 진행
   - [프로젝트 안내](PROJECT.md)
 - 기말시험: 30%
   - [기말시험 안내](FINAL_EXAM.md)
@@ -43,7 +43,8 @@
 | 10 | 11/19 | 데이터 관리 | O | [받기](https://drive.google.com/file/d/1R1Z8mn3VlsJKKUyIzdHRFYM6ngpBjKvu/view?usp=drive_link) | |
 | 11 | 11/26 | 인프라 관리 | O | [받기](https://drive.google.com/file/d/1MZjbUuRF3vTvrWvyWq5R_ijHV_2GjyNw/view?usp=drive_link) | |
 | 12 | 12/3 | 슬기로운 스타트업 개발자 생활 | | | 초빙 특강 (양경석 님) |
-| 13 | 12/10 | 프로젝트 발표 | | | |
+| 13 | 12/10 | 프로젝트 발표 | | | [프로젝트 안내](PROJECT.md) |
+| 14 | 12/17 | 기말 시험 | | | [기말시험 안내](FINAL_EXAM.md) |
 
 
 ## 실습 진행
